@@ -72,6 +72,10 @@ export const RegistrationScreen = () => {
           <Image source={require("../assets/add.png")} />
         </Pressable>
       </View>
+      <Pressable style={[styles.registerButton, { marginTop: 43 }]}>
+        Зареєструватися
+      </Pressable>
+      <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
     </View>
   );
 };
@@ -136,5 +140,21 @@ const styles = StyleSheet.create({
     right: -12.5,
     width: 25,
     height: 25,
+  },
+  registerButton: {
+    width: "calc(100% - 32px)",
+    height: 51,
+    backgroundColor: "#FF6C00",
+    borderTopLeftRadius: 32,
+    borderBottomRightRadius: 32,
+    borderBottomLeftRadius: 32,
+    borderTopRightRadius: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    marginBottom: 16,
+  },
+  linkToAccount: {
+    color: "#1B4371",
   },
 });
