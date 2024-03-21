@@ -8,7 +8,7 @@ import {
   Pressable,
 } from "react-native";
 
-export const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +28,10 @@ export const RegistrationScreen = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const goLogin = () => {
+    navigation.navigate("Login");
   };
 
   return (
@@ -73,9 +77,11 @@ export const RegistrationScreen = () => {
         </Pressable>
       </View>
       <Pressable style={[styles.registerButton, { marginTop: 43 }]}>
-        Зареєструватися
+        <Text style={{ color: "white" }}>Зареєструватися</Text>
       </Pressable>
-      <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
+      <Pressable onPress={goLogin}>
+        <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
+      </Pressable>
     </View>
   );
 };
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center", // Вирівнювання тексту по центру по горизонталі
-    backgroundColor: "white",
+    // backgroundColor: "inherit",
     position: "absolute",
     top: 263,
     borderTopLeftRadius: 25,
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 16,
-    width: "calc(100% - 32px)",
+    width: "90%",
     borderWidth: 1,
     borderColor: "#E8E8E8",
     borderRadius: 5,
@@ -142,7 +148,7 @@ const styles = StyleSheet.create({
     height: 25,
   },
   registerButton: {
-    width: "calc(100% - 32px)",
+    width: "90%",
     height: 51,
     backgroundColor: "#FF6C00",
     borderTopLeftRadius: 32,
@@ -151,10 +157,11 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 32,
     alignItems: "center",
     justifyContent: "center",
-    color: "white",
     marginBottom: 16,
   },
   linkToAccount: {
     color: "#1B4371",
   },
 });
+
+export default RegistrationScreen;
