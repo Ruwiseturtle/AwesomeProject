@@ -4,8 +4,8 @@ import {
   Text,
   View,
   TextInput,
-  Button,
-  TouchableOpacity,
+  Image,
+  Pressable,
 } from "react-native";
 
 export const RegistrationScreen = () => {
@@ -58,16 +58,20 @@ export const RegistrationScreen = () => {
           placeholderTextColor={"#BDBDBD"}
           secureTextEntry={!showPassword}
         />
-        <TouchableOpacity
+        <Pressable
           onPress={togglePasswordVisibility}
           style={styles.toggleButton}
         >
           <Text style={styles.toggleButtonText}>
             {showPassword ? "Приховати" : "Показати"}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
-      <View style={styles.avatar}></View>
+      <View style={styles.avatar}>
+        <Pressable style={styles.buttonAddAvatar}>
+          <Image source={require("../assets/add.png")} />
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -125,5 +129,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     borderRadius: 5,
     marginLeft: 8,
+  },
+  buttonAddAvatar: {
+    position: "absolute",
+    top: 81,
+    right: -12.5,
+    width: 25,
+    height: 25,
   },
 });
