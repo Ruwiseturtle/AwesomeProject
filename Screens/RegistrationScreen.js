@@ -1,10 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
 export const RegistrationScreen = () => {
-   const [login, setLogin] = useState("");
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLoginChange = (newText) => {
     setLogin(newText);
@@ -16,6 +24,10 @@ export const RegistrationScreen = () => {
 
   const handlePasswordChange = (newText) => {
     setPassword(newText);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -37,13 +49,24 @@ export const RegistrationScreen = () => {
         placeholder={"Адреса електронної пошти"}
         placeholderTextColor={"#BDBDBD"}
       />
-      <TextInput
-        style={[styles.input, { marginTop: 16 }]}
-        onChangeText={handlePasswordChange}
-        value={password}
-        placeholder={"Пароль"}
-        placeholderTextColor={"#BDBDBD"}
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={[styles.input, { marginTop: 16 }]}
+          onChangeText={handlePasswordChange}
+          value={password}
+          placeholder={"Пароль"}
+          placeholderTextColor={"#BDBDBD"}
+          secureTextEntry={!showPassword}
+        />
+        <TouchableOpacity
+          onPress={togglePasswordVisibility}
+          style={styles.toggleButton}
+        >
+          <Text style={styles.toggleButtonText}>
+            {showPassword ? "Приховати" : "Показати"}
+          </Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.avatar}></View>
     </View>
   );
@@ -51,7 +74,6 @@ export const RegistrationScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     width: "100%",
     height: "100%",
     alignItems: "center", // Вирівнювання тексту по центру по горизонталі
@@ -80,11 +102,28 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 16,
-    // marginTop: 32,
     width: "calc(100% - 32px)",
     borderWidth: 1,
     borderColor: "#E8E8E8",
     borderRadius: 5,
     backgroundColor: "#F6F6F6",
+  },
+  passwordContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  toggleButtonText: {
+    color: "#1B4371",
+  },
+  toggleButton: {
+    position: "absolute",
+    right: 20,
+    top: 25,
+    padding: 8,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 5,
+    marginLeft: 8,
   },
 });
