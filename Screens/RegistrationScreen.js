@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export const RegistrationScreen = () => {
-  const [text, setText] = useState("");
+   const [login, setLogin] = useState("");
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
 
-  const handleTextChange = (newText) => {
-    setText(newText);
+  const handleLoginChange = (newText) => {
+    setLogin(newText);
+  };
+
+  const handleEmailChange = (newText) => {
+    setEmail(newText);
+  };
+
+  const handlePasswordChange = (newText) => {
+    setPassword(newText);
   };
 
   return (
@@ -14,10 +24,25 @@ export const RegistrationScreen = () => {
         <Text style={styles.text}>Реєстрація</Text>
       </View>
       <TextInput
-        style={styles.input}
-        onChangeText={handleTextChange}
-        value={text}
-        placeholder={"Please type here…"}
+        style={[styles.input, { marginTop: 32 }]}
+        onChangeText={handleLoginChange}
+        value={login}
+        placeholder={"Логін"}
+        placeholderTextColor={"#BDBDBD"}
+      />
+      <TextInput
+        style={[styles.input, { marginTop: 16 }]}
+        onChangeText={handleEmailChange}
+        value={email}
+        placeholder={"Адреса електронної пошти"}
+        placeholderTextColor={"#BDBDBD"}
+      />
+      <TextInput
+        style={[styles.input, { marginTop: 16 }]}
+        onChangeText={handlePasswordChange}
+        value={password}
+        placeholder={"Пароль"}
+        placeholderTextColor={"#BDBDBD"}
       />
       <View style={styles.avatar}></View>
     </View>
@@ -58,7 +83,8 @@ const styles = StyleSheet.create({
     // marginTop: 32,
     width: "calc(100% - 32px)",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#E8E8E8",
     borderRadius: 5,
+    backgroundColor: "#F6F6F6",
   },
 });
