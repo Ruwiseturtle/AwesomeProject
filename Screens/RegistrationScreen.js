@@ -7,6 +7,10 @@ import {
   Image,
   ImageBackground,
   Pressable,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 
 const RegistrationScreen = ({ navigation }) => {
@@ -35,79 +39,109 @@ const RegistrationScreen = ({ navigation }) => {
     navigation.navigate("Login");
   };
 
+  const registration = () => {
+    console.log("====================================");
+    console.log(login);
+    console.log(email);
+    console.log(password);
+    console.log("====================================");
+  };
+
   return (
     <ImageBackground
       style={styles.backgroundStyle}
       source={require("../assets/Photo-BG.jpeg")}
     >
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>Реєстрація</Text>
-        </View>
-        <TextInput
-          style={[styles.input, { marginTop: 32 }]}
-          onChangeText={handleLoginChange}
-          value={login}
-          placeholder={"Логін"}
-          placeholderTextColor={"#BDBDBD"}
-        />
-        <TextInput
-          style={[styles.input, { marginTop: 16 }]}
-          onChangeText={handleEmailChange}
-          value={email}
-          placeholder={"Адреса електронної пошти"}
-          placeholderTextColor={"#BDBDBD"}
-        />
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={[styles.input, { marginTop: 16 }]}
-            onChangeText={handlePasswordChange}
-            value={password}
-            placeholder={"Пароль"}
-            placeholderTextColor={"#BDBDBD"}
-            secureTextEntry={!showPassword}
-          />
-          <Pressable
-            onPress={togglePasswordVisibility}
-            style={styles.toggleButton}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View style={styles.avatar}>
+            <Pressable style={styles.buttonAddAvatar}>
+              <Image source={require("../assets/add.png")} />
+            </Pressable>
+          </View>
+          <View>
+            <Text style={styles.text}>Реєстрація</Text>
+          </View>
+
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.box}
           >
-            <Text style={styles.toggleButtonText}>
-              {showPassword ? "Приховати" : "Показати"}
-            </Text>
+            <TextInput
+              style={[styles.input, { marginTop: 32 }]}
+              onChangeText={handleLoginChange}
+              // value={login}
+              placeholder={"Логін"}
+              placeholderTextColor={"#BDBDBD"}
+            />
+            <TextInput
+              style={[styles.input, { marginTop: 16 }]}
+              onChangeText={handleEmailChange}
+              // value={email}
+              placeholder={"Адреса електронної пошти"}
+              placeholderTextColor={"#BDBDBD"}
+            />
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={[styles.input, { marginTop: 16 }]}
+                onChangeText={handlePasswordChange}
+                // value={password}
+                placeholder={"Пароль"}
+                placeholderTextColor={"#BDBDBD"}
+                secureTextEntry={!showPassword}
+              />
+              <Pressable
+                onPress={togglePasswordVisibility}
+                style={styles.toggleButton}
+              >
+                <Text style={styles.toggleButtonText}>
+                  {showPassword ? "Приховати" : "Показати"}
+                </Text>
+              </Pressable>
+            </View>
+          </KeyboardAvoidingView>
+          <Pressable
+            style={[styles.registerButton, { marginTop: 43 }]}
+            onPress={registration}
+          >
+            <Text style={{ color: "white" }}>Зареєструватися</Text>
+          </Pressable>
+          <Pressable onPress={goLogin}>
+            <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
           </Pressable>
         </View>
-        <View style={styles.avatar}>
-          <Pressable style={styles.buttonAddAvatar}>
-            <Image source={require("../assets/add.png")} />
-          </Pressable>
-        </View>
-        <Pressable style={[styles.registerButton, { marginTop: 43 }]}>
-          <Text style={{ color: "white" }}>Зареєструватися</Text>
-        </Pressable>
-        <Pressable onPress={goLogin}>
-          <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
-        </Pressable>
-      </View>
+      </TouchableWithoutFeedback>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardContainerStyles: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+
+  container: {
+    position: "relative",
+    width: "100%",
+    height: 549,
+    alignItems: "center", // Вирівнювання тексту по центру по горизонталі
+    backgroundColor: "white",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
   backgroundStyle: {
     flex: 1,
     width: "100%",
     height: "100%",
     alignItems: "center",
+    justifyContent: "flex-end",
   },
-  container: {
+  box: {
+    flex: 1,
     width: "100%",
-    height: "100%",
-    alignItems: "center", // Вирівнювання тексту по центру по горизонталі
-    backgroundColor: "white",
-    position: "absolute",
-    top: 263,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    alignItems: "center",
   },
   text: {
     color: "black",
@@ -120,6 +154,7 @@ const styles = StyleSheet.create({
     top: -60,
     width: 132,
     height: 120,
+    alignItems: "center",
     borderTopLeftRadius: 16,
     borderBottomRightRadius: 16,
     borderBottomLeftRadius: 16,
@@ -173,6 +208,12 @@ const styles = StyleSheet.create({
   },
   linkToAccount: {
     color: "#1B4371",
+    marginBottom: 45,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingBottom: 100,
   },
 });
 

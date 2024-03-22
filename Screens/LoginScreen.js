@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
-  ImageBackground,
   View,
   TextInput,
+  Image,
+  ImageBackground,
   Pressable,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
-  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleLoginChange = (newText) => {
-    setLogin(newText);
-  };
 
   const handleEmailChange = (newText) => {
     setEmail(newText);
@@ -30,75 +30,120 @@ const LoginScreen = ({ navigation }) => {
     setShowPassword(!showPassword);
   };
 
+  const goLogin = () => {
+    navigation.navigate("Register");
+  };
+
+  const registration = () => {
+    console.log("====================================");
+    console.log(email);
+    console.log(password);
+    console.log("====================================");
+  };
+
   return (
     <ImageBackground
       style={styles.backgroundStyle}
       source={require("../assets/Photo-BG.jpeg")}
     >
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.textLogin}>Увійти</Text>
-        </View>
-        <TextInput
-          style={[styles.input, { marginTop: 16 }]}
-          onChangeText={handleEmailChange}
-          value={email}
-          placeholder={"Адреса електронної пошти"}
-          placeholderTextColor={"#BDBDBD"}
-        />
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={[styles.input, { marginTop: 16 }]}
-            onChangeText={handlePasswordChange}
-            value={password}
-            placeholder={"Пароль"}
-            placeholderTextColor={"#BDBDBD"}
-            secureTextEntry={!showPassword}
-          />
-          <Pressable
-            onPress={togglePasswordVisibility}
-            style={styles.toggleButton}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.text}>Увійти</Text>
+          </View>
+
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.box}
           >
-            <Text style={styles.toggleButtonText}>
-              {showPassword ? "Приховати" : "Показати"}
+            <TextInput
+              style={[styles.input, { marginTop: 32 }]}
+              onChangeText={handleEmailChange}
+              // value={email}
+              placeholder={"Адреса електронної пошти"}
+              placeholderTextColor={"#BDBDBD"}
+            />
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={[styles.input, { marginTop: 16 }]}
+                onChangeText={handlePasswordChange}
+                // value={password}
+                placeholder={"Пароль"}
+                placeholderTextColor={"#BDBDBD"}
+                secureTextEntry={!showPassword}
+              />
+              <Pressable
+                onPress={togglePasswordVisibility}
+                style={styles.toggleButton}
+              >
+                <Text style={styles.toggleButtonText}>
+                  {showPassword ? "Приховати" : "Показати"}
+                </Text>
+              </Pressable>
+            </View>
+          </KeyboardAvoidingView>
+          <Pressable
+            style={[styles.registerButton, { marginTop: 43 }]}
+            onPress={registration}
+          >
+            <Text style={{ color: "white" }}>Увійти</Text>
+          </Pressable>
+          <Pressable onPress={goLogin}>
+            <Text style={styles.linkToAccount}>
+              Немає акаунту? Зареєструватися
             </Text>
           </Pressable>
         </View>
-        <Pressable style={[styles.LoginButton, { marginTop: 43 }]}>
-          <Text style={{ color: "white" }}>Увійти</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.linkToRegister}>
-            Немає акаунту? Зареєструватися
-          </Text>
-        </Pressable>
-      </View>
+      </TouchableWithoutFeedback>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardContainerStyles: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+
+  container: {
+    position: "relative",
+    width: "100%",
+    height: 489,
+    alignItems: "center", // Вирівнювання тексту по центру по горизонталі
+    backgroundColor: "white",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
   backgroundStyle: {
     flex: 1,
     width: "100%",
     height: "100%",
     alignItems: "center",
+    justifyContent: "flex-end",
   },
-  container: {
+  box: {
+    flex: 1,
     width: "100%",
-    height: "100%",
-    alignItems: "center", // Вирівнювання тексту по центру по горизонталі
-    backgroundColor: "white",
-    position: "absolute",
-    top: 263,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    alignItems: "center",
   },
-  textLogin: {
+  text: {
     color: "black",
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 32,
+    marginTop: 92,
+  },
+  avatar: {
+    position: "absolute",
+    top: -60,
+    width: 132,
+    height: 120,
+    alignItems: "center",
+    borderTopLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    borderBottomLeftRadius: 16,
+    borderTopRightRadius: 16,
+    backgroundColor: "#F6F6F6",
   },
   input: {
     padding: 16,
@@ -126,8 +171,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 8,
   },
-
-  LoginButton: {
+  buttonAddAvatar: {
+    position: "absolute",
+    top: 81,
+    right: -12.5,
+    width: 25,
+    height: 25,
+  },
+  registerButton: {
     width: "90%",
     height: 51,
     backgroundColor: "#FF6C00",
@@ -139,8 +190,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 16,
   },
-  linkToRegister: {
+  linkToAccount: {
     color: "#1B4371",
+    marginBottom: 45,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingBottom: 100,
   },
 });
 
