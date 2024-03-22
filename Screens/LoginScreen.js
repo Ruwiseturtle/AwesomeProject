@@ -26,7 +26,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.text}>Увійти</Text>
+        <Text style={styles.textLogin}>Увійти</Text>
       </View>
       <TextInput
         style={[styles.input, { marginTop: 16 }]}
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },
-  text: {
+  textLogin: {
     color: "black",
     fontSize: 30,
     fontWeight: "bold",

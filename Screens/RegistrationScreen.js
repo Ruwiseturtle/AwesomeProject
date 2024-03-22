@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   Image,
+  ImageBackground,
   Pressable,
 } from "react-native";
 
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center", // Вирівнювання тексту по центру по горизонталі
-    // backgroundColor: "inherit",
+    backgroundColor: "green",
     position: "absolute",
     top: 263,
     borderTopLeftRadius: 25,

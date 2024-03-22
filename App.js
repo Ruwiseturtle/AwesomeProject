@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, ImageBackground, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import RegistrationScreen from "./Screens/RegistrationScreen";
 import LoginScreen from "./Screens/LoginScreen";
@@ -19,9 +19,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        style={styles.backgroundImage}
-        source={require("./assets/Photo-BG.jpeg")}
+      <View
+        style={styles.containerTwo}
+        // source={require("./assets/Photo-BG.jpeg")}
       >
         <NavigationContainer>
           <Stack.Navigator>
@@ -37,7 +37,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </ImageBackground>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -45,13 +45,13 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
     flex: 1,
-    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    // alignItems: "center",
     justifyContent: "center",
   },
-  backgroundImage: {
+  containerTwo: {
     flex: 1,
     width: "100%",
     height: "100%",
