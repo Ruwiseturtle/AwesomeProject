@@ -65,6 +65,7 @@ const RegistrationScreen = ({ navigation }) => {
 
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
             style={styles.box}
           >
             <TextInput
