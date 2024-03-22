@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  ImageBackground,
+  View,
+  TextInput,
+  Pressable,
+} from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
@@ -24,48 +31,59 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.textLogin}>Увійти</Text>
-      </View>
-      <TextInput
-        style={[styles.input, { marginTop: 16 }]}
-        onChangeText={handleEmailChange}
-        value={email}
-        placeholder={"Адреса електронної пошти"}
-        placeholderTextColor={"#BDBDBD"}
-      />
-      <View style={styles.passwordContainer}>
+    <ImageBackground
+      style={styles.backgroundStyle}
+      source={require("../assets/Photo-BG.jpeg")}
+    >
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textLogin}>Увійти</Text>
+        </View>
         <TextInput
           style={[styles.input, { marginTop: 16 }]}
-          onChangeText={handlePasswordChange}
-          value={password}
-          placeholder={"Пароль"}
+          onChangeText={handleEmailChange}
+          value={email}
+          placeholder={"Адреса електронної пошти"}
           placeholderTextColor={"#BDBDBD"}
-          secureTextEntry={!showPassword}
         />
-        <Pressable
-          onPress={togglePasswordVisibility}
-          style={styles.toggleButton}
-        >
-          <Text style={styles.toggleButtonText}>
-            {showPassword ? "Приховати" : "Показати"}
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={[styles.input, { marginTop: 16 }]}
+            onChangeText={handlePasswordChange}
+            value={password}
+            placeholder={"Пароль"}
+            placeholderTextColor={"#BDBDBD"}
+            secureTextEntry={!showPassword}
+          />
+          <Pressable
+            onPress={togglePasswordVisibility}
+            style={styles.toggleButton}
+          >
+            <Text style={styles.toggleButtonText}>
+              {showPassword ? "Приховати" : "Показати"}
+            </Text>
+          </Pressable>
+        </View>
+        <Pressable style={[styles.LoginButton, { marginTop: 43 }]}>
+          <Text style={{ color: "white" }}>Увійти</Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.linkToRegister}>
+            Немає акаунту? Зареєструватися
           </Text>
         </Pressable>
       </View>
-      <Pressable style={[styles.LoginButton, { marginTop: 43 }]}>
-        <Text style={{ color: "white" }}>Увійти</Text>
-      </Pressable>
-      <Pressable onPress={() => navigation.navigate("Register")}>
-        <Text style={styles.linkToRegister}>
-          Немає акаунту? Зареєструватися
-        </Text>
-      </Pressable>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundStyle: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+  },
   container: {
     width: "100%",
     height: "100%",
@@ -80,7 +98,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 92,
+    marginTop: 32,
   },
   input: {
     padding: 16,
@@ -101,7 +119,7 @@ const styles = StyleSheet.create({
   },
   toggleButton: {
     position: "absolute",
-    right: 20,
+    right: 25,
     top: 25,
     padding: 8,
     backgroundColor: "#F6F6F6",
