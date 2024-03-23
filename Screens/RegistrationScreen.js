@@ -22,28 +22,22 @@ const RegistrationScreen = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const selectAvatar = async () => {
-    let permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
+      alert("Open the resolution for your camera!");
       return;
     }
 
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    console.log("====================================");
-    console.log(pickerResult.assets[0].uri);
-    console.log("====================================");
+    // console.log("====================================");
+    // console.log(pickerResult.assets[0].uri);
+    // console.log("====================================");
 
     if (pickerResult.cancelled === true) {
       return;
     }
-
     setSelectedImage(pickerResult.assets[0].uri);
-
-    console.log("====================================");
-    console.log("jjjj");
-    console.log("====================================");
   };
 
   const handleLoginChange = (newText) => {
@@ -83,16 +77,8 @@ const RegistrationScreen = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.avatar}>
             {selectedImage && (
-              <Image
-                source={{ uri: selectedImage }}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderTopLeftRadius: 16,
-                  borderBottomRightRadius: 16,
-                  borderBottomLeftRadius: 16,
-                  borderTopRightRadius: 16,
-                }}
+              <Image style={styles.imageAvatar} source={{ uri: selectedImage }}
+               
               />
             )}
             <Pressable style={styles.buttonAddAvatar} onPress={selectAvatar}>
@@ -189,6 +175,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 92,
+  },
+  imageAvatar: {
+    width: "100%",
+    height: "100%",
+    borderTopLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    borderBottomLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   avatar: {
     // overflow:"hidden",
