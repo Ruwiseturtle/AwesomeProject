@@ -19,10 +19,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View
-        style={styles.containerTwo}
-        // source={require("./assets/Photo-BG.jpeg")}
-      >
+      <View style={styles.containerTwo}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen

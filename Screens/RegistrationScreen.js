@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 import {
   StyleSheet,
   Text,
@@ -18,6 +19,32 @@ const RegistrationScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const selectAvatar = async () => {
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Permission to access camera roll is required!");
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    console.log("====================================");
+    console.log(pickerResult.assets[0].uri);
+    console.log("====================================");
+
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+
+    setSelectedImage(pickerResult.assets[0].uri);
+
+    console.log("====================================");
+    console.log("jjjj");
+    console.log("====================================");
+  };
 
   const handleLoginChange = (newText) => {
     setLogin(newText);
@@ -55,7 +82,20 @@ const RegistrationScreen = ({ navigation }) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View style={styles.avatar}>
-            <Pressable style={styles.buttonAddAvatar}>
+            {selectedImage && (
+              <Image
+                source={{ uri: selectedImage }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderTopLeftRadius: 16,
+                  borderBottomRightRadius: 16,
+                  borderBottomLeftRadius: 16,
+                  borderTopRightRadius: 16,
+                }}
+              />
+            )}
+            <Pressable style={styles.buttonAddAvatar} onPress={selectAvatar}>
               <Image source={require("../assets/add.png")} />
             </Pressable>
           </View>
@@ -151,6 +191,7 @@ const styles = StyleSheet.create({
     marginTop: 92,
   },
   avatar: {
+    // overflow:"hidden",
     position: "absolute",
     top: -60,
     width: 132,
