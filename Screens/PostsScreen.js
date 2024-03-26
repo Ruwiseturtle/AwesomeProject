@@ -11,6 +11,12 @@ const PostsScreen = () => {
 };
 
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  containerIcon: {
+    width: 70,
+    height: 40,
+    backgroundColor: 'orange',
+  }
+});
 
 export default PostsScreen;
