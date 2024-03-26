@@ -14,10 +14,11 @@ import {
   Platform,
 } from "react-native";
 
+
 const RegistrationScreen = ({ navigation }) => {
-  const [login, setLogin] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [login, setLogin] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -61,11 +62,7 @@ const RegistrationScreen = ({ navigation }) => {
   };
 
   const registration = () => {
-    console.log("====================================");
-    console.log(login);
-    console.log(email);
-    console.log(password);
-    console.log("====================================");
+    navigation.navigate("Home");
   };
 
   return (

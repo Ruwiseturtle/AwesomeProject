@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { gStyle } from "../styles/style";
 
 const MapScreen = () => {
   return (
-    <View>
-      <Text>Мапа</Text>
+    <View style={gStyle.main}>
+      <Text style={gStyle.title}>Мапа</Text>
     </View>
   );
 };

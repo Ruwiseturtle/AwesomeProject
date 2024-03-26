@@ -1,10 +1,14 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { gStyle } from "../styles/style";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
+  console.log("ProfileScreen");
+
+ 
   return (
-    <View>
-      <Text> Створити публікацію</Text>
+    <View style={gStyle.main}>
+      <Text style={gStyle.title}>Профіль</Text>
     </View>
   );
 };

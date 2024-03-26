@@ -1,14 +1,22 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import RegistrationScreen from "./Screens/RegistrationScreen";
 import LoginScreen from "./Screens/LoginScreen";
+import CommentsScreen from "./Screens/CommentsScreen";
+import CreatePostsScreen from "./Screens/CreatePostsScreen";
+import PostsScreen from "./Screens/PostsScreen";
+import ProfileScreen from "./Screens/ProfileScreen";
+import TabNavigation from "./Screens/TabNavigation";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
   const [fontsLoaded] = useFonts({
     "Inter-Black": require("./assets/fonts/inter-black.ttf"),
   });
@@ -17,24 +25,45 @@ export default function App() {
     return null;
   }
 
+ 
   return (
     <View style={styles.container}>
-      <View style={styles.containerTwo}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Register"
-              component={RegistrationScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Register"
+            component={RegistrationScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            // component={PostsScreen}
+            component={TabNavigation}
+            options={{
+              headerShown: false,
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="CreatePostsScreen"
+            component={TabNavigation}
+            options={{
+              title: "Створити публікацію",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="ProfileScreen"
+            component={TabNavigation}
+            options={{ title: "Профіль", headerTitleAlign: "center" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
       <StatusBar style="auto" />
     </View>
   );
@@ -45,13 +74,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    // alignItems: "center",
     justifyContent: "center",
   },
   containerTwo: {
     flex: 1,
     width: "100%",
     height: "100%",
+    // alignItems: "center",
     justifyContent: "center",
   },
   text: {

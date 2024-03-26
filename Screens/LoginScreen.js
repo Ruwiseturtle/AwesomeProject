@@ -4,7 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  Image,
   ImageBackground,
   Pressable,
   KeyboardAvoidingView,
@@ -14,8 +13,8 @@ import {
 } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (newText) => {
@@ -35,10 +34,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const registration = () => {
-    console.log("====================================");
-    console.log(email);
-    console.log(password);
-    console.log("====================================");
+    navigation.navigate("Home");
   };
 
   return (

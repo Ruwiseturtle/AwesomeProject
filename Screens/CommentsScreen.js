@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { gStyle } from "../styles/style";
 
 const CommentsScreen = () => {
   return (
-    <View>
-      <Text>Коментарі</Text>
+    <View style={gStyle.main}>
+      <Text style={gStyle.title}>Коментарі</Text>
     </View>
   );
 };
