@@ -8,8 +8,8 @@ const PostsScreen = () => {
   const navigation = useNavigation();
 
   const goPersonalArea = () => {
-    console.log('personal cabinet');
-  }
+    console.log("personal cabinet");
+  };
   return (
     <View>
       <HeaderPostsScreen />
@@ -52,13 +52,15 @@ const styles = StyleSheet.create({
     width: 171,
     height: 60,
     paddingTop: 32,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   //контейнер з фото та імям юзера
 
   boxUserInfo: {
     width: 171,
     height: 60,
-    marginBottom:32,
+    marginBottom: 32,
     // backgroundColor: "#B84747",
   },
   boxMainAvatar: {
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
   },
   boxInfoUser: {
     width: 103,
-    justifyContent:'center',
+    justifyContent: "center",
   },
   textAvatar: {},
 });
