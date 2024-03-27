@@ -31,7 +31,7 @@ function TabNavigation({ navigation }) {
         name="PostsScreen"
         component={PostsScreen}
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle: "Публікації",
           tabBarLabel: ({ focused }) => (
             <Text style={{ fontSize: 0, color: "red" }}>Публікації</Text>
@@ -46,11 +46,8 @@ function TabNavigation({ navigation }) {
             >
               <Image
                 source={require("../assets/pngPosts.png")}
-                style={{
-                  tintColor: focused ? "white" : "#212121",
-                  width: 24,
-                  height: 24,
-                }}
+                tintColor={focused ? "white" : "#212121"}
+                style={{ width: 24, height: 24 }}
               ></Image>
             </View>
           ),
@@ -77,11 +74,8 @@ function TabNavigation({ navigation }) {
             >
               <Image
                 source={require("../assets/pngPlus.png")}
-                style={{
-                  tintColor: focused ? "white" : "#212121",
-                  width: 13,
-                  height: 13,
-                }}
+                tintColor={focused ? "white" : "#212121"}
+                style={{ width: 24, height: 24 }}
               ></Image>
             </View>
           ),
@@ -106,11 +100,8 @@ function TabNavigation({ navigation }) {
             >
               <Image
                 source={require("../assets/pngUser.png")}
-                style={{
-                  tintColor: focused ? "#FFFFFF" : "#212121",
-                  width: 24,
-                  height: 24,
-                }}
+                tintColor={focused ? "white" : "#212121"}
+                style={{ width: 24, height: 24 }}
               ></Image>
             </View>
           ),
