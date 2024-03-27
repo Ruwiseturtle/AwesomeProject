@@ -9,6 +9,7 @@ const HeaderPostsScreen = () => {
     navigation.navigate("Login");
   };
 
+  // компон
   return (
     <View style={styles.container}>
       <Text style={styles.textHeader}>Публікації</Text>
