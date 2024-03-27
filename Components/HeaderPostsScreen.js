@@ -13,20 +13,22 @@ const HeaderPostsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.textHeader}>Публікації</Text>
-      <View style={styles.imageContainer}>
-        <Pressable onPress={goLogin}>
+      
+        <Pressable onPress={goLogin} style={styles.imageContainer}>
           <Image
             source={require("../assets/pngExit.png")}
+            tintColor="grey"
             style={styles.image}
           ></Image>
         </Pressable>
-      </View>
+    
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     height: 88,
     backgroundColor: "##FFFFFF",
     paddingTop: 44,
@@ -35,6 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingLeft: 10,
     paddingRight: 10,
+    borderWidth: 0.2,
+    borderColor: "#212121",
   },
   textHeader: {
     fontSize: 17,
@@ -47,6 +51,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: "absolute",
+    top: 55,
     right: 10,
     width: 24,
     height: 24,

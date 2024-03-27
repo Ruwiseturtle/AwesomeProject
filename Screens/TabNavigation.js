@@ -32,7 +32,7 @@ function TabNavigation({ navigation }) {
         component={PostsScreen}
         options={{
           headerShown: false,
-          headerTitle: "Публікації",
+          // headerTitle: "Публікації",
           tabBarLabel: ({ focused }) => (
             <Text style={{ fontSize: 0, color: "red" }}>Публікації</Text>
           ),

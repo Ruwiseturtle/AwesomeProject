@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
       style={styles.backgroundStyle}
       source={require("../assets/Photo-BG.jpeg")}
     >
-      <Pressable style={styles.pressableContainer}  onPress={Keyboard.dismiss}>
+      <Pressable style={styles.pressableContainer} onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View>
             <Text style={styles.text}>Увійти</Text>
