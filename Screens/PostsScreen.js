@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-  // Функция для обработки нажатия на иконку выхода
+
   const handleLogout = () => {
    console.log('====================================');
    console.log('выход');
@@ -21,7 +21,6 @@ const PostsScreen = () => {
   );
 };
 
-// Устанавливаем параметры навигации (например, заголовок)
 PostsScreen.navigationOptions = ({ navigation }) => ({
   headerRight: () => (
     <TouchableOpacity onPress={() => handleLogout}>
