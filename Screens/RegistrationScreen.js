@@ -10,7 +10,6 @@ import {
   Pressable,
   KeyboardAvoidingView,
   Keyboard,
-  TouchableWithoutFeedback,
   Platform,
 } from "react-native";
 
@@ -70,12 +69,13 @@ const RegistrationScreen = ({ navigation }) => {
       style={styles.backgroundStyle}
       source={require("../assets/Photo-BG.jpeg")}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Pressable style={styles.pressableContainer} onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View style={styles.avatar}>
             {selectedImage && (
-              <Image style={styles.imageAvatar} source={{ uri: selectedImage }}
-               
+              <Image
+                style={styles.imageAvatar}
+                source={{ uri: selectedImage }}
               />
             )}
             <Pressable style={styles.buttonAddAvatar} onPress={selectAvatar}>
@@ -134,7 +134,7 @@ const RegistrationScreen = ({ navigation }) => {
             <Text style={styles.linkToAccount}>Вже є акаунт? Увійти</Text>
           </Pressable>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     </ImageBackground>
   );
 };
@@ -146,6 +146,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
 
+  pressableContainer: {
+    width: '100%',
+  },
   container: {
     position: "relative",
     width: "100%",

@@ -2,19 +2,37 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "./PostsScreen";
 import CreatePostsScreen from "./CreatePostsScreen";
 import ProfileScreen from "./ProfileScreen";
-import { Image, View,Text, StyleSheet } from "react-native";
+import { Image, View, Text, StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 function TabNavigation({ navigation }) {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      sceneContainerStyle={{ backgroundColor: "#E5E5E5" }}
+      screenOptions={{
+        tabBarStyle: {
+          // стили для контейнера нижнего меню
+          height: 83,
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          backgroundColor: "#E5E5E5",
+          borderColor: "#212121",
+          // paddingHorizontal: 16,
+        },
+        tabStyle: {
+          flex: 1,
+          // paddingVertical: 16,
+        },
+      }}
+    >
       <Tab.Screen
         name="PostsScreen"
         component={PostsScreen}
         options={{
           headerShown: true,
-          // headerTitle: "Публікації",
+          headerTitle: "Публікації",
           tabBarLabel: ({ focused }) => (
             <Text style={{ fontSize: 0, color: "red" }}>Публікації</Text>
           ),
@@ -23,7 +41,7 @@ function TabNavigation({ navigation }) {
             <View
               style={[
                 styles.containerIcon,
-                { backgroundColor: focused ? "#FF6C00" : "white" },
+                { backgroundColor: focused ? "#FF6C00" : "#E5E5E5" },
               ]}
             >
               <Image
@@ -54,7 +72,7 @@ function TabNavigation({ navigation }) {
             <View
               style={[
                 styles.containerIcon,
-                { backgroundColor: focused ? "#FF6C00" : "white" },
+                { backgroundColor: focused ? "#FF6C00" : "#E5E5E5" },
               ]}
             >
               <Image
@@ -83,13 +101,13 @@ function TabNavigation({ navigation }) {
             <View
               style={[
                 styles.containerIcon,
-                { backgroundColor: focused ? "#FF6C00" : "white" },
+                { backgroundColor: focused ? "#FF6C00" : "#E5E5E5" },
               ]}
             >
               <Image
                 source={require("../assets/pngUser.png")}
                 style={{
-                  tintColor: focused ? "white" : "#212121",
+                  tintColor: focused ? "#FFFFFF" : "#212121",
                   width: 24,
                   height: 24,
                 }}
@@ -106,10 +124,10 @@ const styles = StyleSheet.create({
   containerIcon: {
     width: 70,
     height: 40,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    borderBottomRightRadius: 16,
-    borderBottomLeftRadius: 16,
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    borderBottomRightRadius: 22,
+    borderBottomLeftRadius: 22,
     alignItems: "center",
     justifyContent: "center",
   },

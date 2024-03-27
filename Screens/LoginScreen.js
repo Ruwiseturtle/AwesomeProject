@@ -8,7 +8,6 @@ import {
   Pressable,
   KeyboardAvoidingView,
   Keyboard,
-  TouchableWithoutFeedback,
   Platform,
 } from "react-native";
 
@@ -42,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
       style={styles.backgroundStyle}
       source={require("../assets/Photo-BG.jpeg")}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Pressable style={styles.pressableContainer}  onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <View>
             <Text style={styles.text}>Увійти</Text>
@@ -91,7 +90,7 @@ const LoginScreen = ({ navigation }) => {
             </Text>
           </Pressable>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     </ImageBackground>
   );
 };
@@ -102,7 +101,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
-
+  pressableContainer: {
+    width: "100%",
+  },
   container: {
     position: "relative",
     width: "100%",

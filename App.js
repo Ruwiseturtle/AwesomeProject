@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,10 +7,6 @@ import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import RegistrationScreen from "./Screens/RegistrationScreen";
 import LoginScreen from "./Screens/LoginScreen";
-import CommentsScreen from "./Screens/CommentsScreen";
-import CreatePostsScreen from "./Screens/CreatePostsScreen";
-import PostsScreen from "./Screens/PostsScreen";
-import ProfileScreen from "./Screens/ProfileScreen";
 import TabNavigation from "./Screens/TabNavigation";
 
 const Stack = createNativeStackNavigator();

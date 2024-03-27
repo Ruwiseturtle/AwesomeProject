@@ -15,11 +15,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
-  buttonBack: {
-    width: 200,
-    height: 100,
-    backgroundColor: 'red',
-  },
+
 });
 
 export default CreatePostsScreen;
